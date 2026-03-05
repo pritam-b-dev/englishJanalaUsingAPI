@@ -20,7 +20,7 @@ const displayLessons = (lessons) => {
     const btnDiv = document.createElement("div");
     btnDiv.innerHTML = `
     
-    <button class="btn btn-outline btn-primary">
+    <button onclick="loadLessonWords(${lesson.level_no})" class="btn btn-outline btn-primary">
     <i class="fa-solid fa-book-open"></i> 
     Lesson - ${lesson.level_no}
     </button>
@@ -29,6 +29,15 @@ const displayLessons = (lessons) => {
     //4.append into container.
     lessonsContainer.append(btnDiv);
   }
+};
+
+//lesson অনুযায়ী ক্লিক করলে আমরা loadLessonWords(${lesson.level_no}) ফাংশনের মাধ্যমে word গুলিকে পেতে পারি। আর word এর জন্য আলাদা api link দেয়া আছে। আমাদের সেই লিংক ব্যবহার করতে হবে।
+
+const loadLessonWords = (id) => {
+  const lessonWordsURL = `https://openapi.programming-hero.com/api/level/${id}`;
+  fetch(lessonWordsURL)
+    .then((res) => res.json())
+    .then((data) => console.log(data.data));
 };
 
 loadLessons();
