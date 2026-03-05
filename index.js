@@ -51,6 +51,20 @@ const displayLessonWords = (words) => {
   const wordContainer = document.getElementById("word-container");
   wordContainer.innerHTML = "";
 
+  if (words.length === 0) {
+    wordContainer.innerHTML = `
+    <div class="text-center col-span-full rounded-xl py-10 space-y-5">
+        <img class="mx-auto" src="./assets/alert-error.png"/>
+        <p class="text-xl font-medium text-gray-300">
+          এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।
+        </p>
+        <h2 class="font-medium text-4xl">নেক্সট Lesson এ যান।</h2>
+      </div>
+    
+    `;
+    return;
+  }
+
   words.forEach((word) => {
     console.log(word);
 
